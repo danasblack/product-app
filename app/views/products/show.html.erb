@@ -1,0 +1,10 @@
+  <h4><%= @product.name %></h4>
+  <h4> Price:$ <%= @product.price %></h4>
+  <h4>Tax:$ <%= @product.tax %></h4>
+  <h4>Total:$ <%= @product.total %></h4>
+  <%= image_tag(@product.image) %>
+  <h4><%= @product.description %></h4>
+  <h4><%= @product.sale_message %><h4>
+  <%= link_to "Edit this recipe", "/products/#{@product.id}/edit" %>
+  <%= link_to "Delete this recipe", "/products/#{@product.id}", method: :delete %>
+  <a href="/products"> Back to all products</a>

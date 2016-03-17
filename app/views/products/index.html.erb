@@ -1,0 +1,16 @@
+<h1><%= "Check out our newest Apple products!" %></h1>
+<div class="row">
+ <p><a href="/products?sort=price">Sort (highest to lowest price)</a>|<a href="/products?sort.desc=price">(lowest to highest price)</a></p>
+<%= link_to "Create a new product", "/products/new" %>
+<div class="row">
+<% @products.each do |product| %>
+<div class="col-md-3">
+  <h4> Item: <a href ="/products/<%= product.id %>"><%= product.name %></a></h4>
+  <h4> Price:$ <%= product.price %></h4>
+  <h4><img src= <%= product.image %>></h4>
+  <h4><%= product.description %></h4>
+ </div>  
+<% end %>  
+</div>
+
+
