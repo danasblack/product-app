@@ -11,7 +11,7 @@ class ProductsController < ApplicationController
     elsif sort_discount != nil
       @products = ProducApp.where("#{sort_discount} < ?", 299)
     end  
-     render "index.html.erb"
+    render "index.html.erb"
   end  
   
   def new
@@ -29,6 +29,8 @@ class ProductsController < ApplicationController
   end
 
   def show
+    products = ProducApp.all
+    @product = products.sample
     product_id = params[:id]
     @product = ProducApp.find_by(id: product_id)
     render 'show.html.erb'
@@ -47,7 +49,7 @@ class ProductsController < ApplicationController
      price: params[:price],
      description: params[:description],
      image: params[:image]
-     )
+    )
     flash[:success] = "Product successfully updated!"
     redirect_to '/products#{@product.id}'
   end 
@@ -59,5 +61,11 @@ class ProductsController < ApplicationController
     flash[:warning] = "Product successfully deleted!"
     redirect_to '/products'
   end
+
+  def run_search
+    searcch_term = params[:search]
+    @products = ProducApp.where('name LIKE ?', '%#{search_term}%')
+    render "index.html.erb"
+  end   
 end 
 

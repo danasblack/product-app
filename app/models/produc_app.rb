@@ -1,4 +1,6 @@
 class ProducApp < ActiveRecord::Base  
+  belongs_to :supplier
+  has_many :images
   def sale_message
     if price < 299
       return "Discount Item!"
