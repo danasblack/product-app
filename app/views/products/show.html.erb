@@ -9,3 +9,16 @@
   <%= link_to "Edit this recipe", "/products/#{@product.id}/edit" %>
   <%= link_to "Delete this recipe", "/products/#{@product.id}", method: :delete %>
   <a href="/products"> Back to all products</a>
+
+  <%= form_tag '/orders', method: :post do %>
+  <div>
+   <%= label_tag :quantity%>
+   <%= text_field_tag :quantity %>
+  </div> 
+  <div>
+   <%= label_tag :product_id %>
+   <%= text_field_tag :product_id %>
+  </div> 
+  <div>
+   <%= submit_tag "Buy Now" %>
+<% end %>  
