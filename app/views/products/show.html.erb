@@ -1,5 +1,6 @@
   <h4><%= @product.name %></h4>
-   <h4>Supplier: <%= @product.supplier.name %></h4> 
+  <h4>Supplier: <%= @product.supplier.name %></h4> 
+  <h4>Categories: <%= @product.printable_category_names %></h4>
   <h4> Price:$ <%= @product.price %></h4>
   <h4>Tax:$ <%= @product.tax %></h4>
   <h4>Total:$ <%= @product.total %></h4>
@@ -10,15 +11,15 @@
   <%= link_to "Delete this recipe", "/products/#{@product.id}", method: :delete %>
   <a href="/products"> Back to all products</a>
 
-  <%= form_tag '/orders', method: :post do %>
+  <%= form_tag '/cartedproduct', method: :post do %>
   <div>
    <%= label_tag :quantity%>
    <%= text_field_tag :quantity %>
   </div> 
   <div>
    <%= label_tag :product_id %>
-   <%= text_field_tag :product_id %>
+   <%= text_field_tag :product_id%>
   </div> 
   <div>
-   <%= submit_tag "Buy Now" %>
+   <%= submit_tag "Add to Cart" %>
 <% end %>  

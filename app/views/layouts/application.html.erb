@@ -59,6 +59,9 @@
             <li><a href="#">Something else here</a></li>
             <li role="separator" class="divider"></li>
             <li><a href="#">Separated link</a></li>
+            <% Category.all.each do |category| %>
+ +              <li><a href="/products?category=<%= category.name %>">Show <%= category.name %> only</a></li>
+ +            <% end %>
           </ul>
         </li>
       </ul>

@@ -22,6 +22,11 @@ get '/' => 'products#index'
 
   post '/orders' => 'orders#create'
   get '/orders/:id' => 'orders#show'  
+
+  get '/cartedproducts' => 'cartedproducts#index'
+  post '/cartedproducts' => 'cartedproducts#create'
+  get '/cartedproducts/:id' => 'cartedproducts#show'  
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

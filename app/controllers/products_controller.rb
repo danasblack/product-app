@@ -11,6 +11,9 @@ class ProductsController < ApplicationController
     elsif sort_discount != nil
       @products = ProducApp.where("#{sort_discount} < ?", 299)
     end  
+    if params[:category]
+      @products = Category.find_by(name: params[:category]).produc_apps
+    end
     render "index.html.erb"
   end  
   
@@ -24,7 +27,7 @@ class ProductsController < ApplicationController
       price: params[:price],
       description: params[:description],
       image: params[:image]
-      )
+    )
     redirect_to '/products/#{product.id}'
   end
 

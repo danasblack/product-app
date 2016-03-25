@@ -1,7 +1,17 @@
 class ProducApp < ActiveRecord::Base  
   belongs_to :supplier
   has_many :images
-  has_many :orders
+
+  has_many :cartedproducts
+  has_many :orders, through: :cartedproducts
+  has_many :categorized_products
+  has_many :users, through: :cartedproducts
+  
+  has_many :categories, through: :categorized_products
+  has_many :categorized_products
+
+
+
   def sale_message
     if price < 299
       return "Discount Item!"
@@ -17,4 +27,9 @@ class ProducApp < ActiveRecord::Base
   def total
     price + tax
   end  
+
+  def printable_category_names
+    names = categories.map { |category| category.name }.join(", ")
+  end
 end
+
