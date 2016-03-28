@@ -1,5 +1,5 @@
 class CartedProduct < ActiveRecord::Base
   belongs_to :user
   belongs_to :order
-  belongs_to :produc_apps
+  belongs_to :produc_app
 end

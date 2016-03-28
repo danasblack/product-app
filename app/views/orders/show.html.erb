@@ -1,8 +1,11 @@
-<h4> Thank you for your order! Here is a summary of your purchase </h4>
-<h4> Quantity <%= @order.quantity %></h4>
-<h4> Order_id <%= @order.id %></h4>
-<h4> Subtotal <%= @order.subtotal %></h4>
-<h4> Tax <%= @order.tax %></h4>
-<h4> Total <%= @order.total %></h4>
+<h4> Here is a summary of your Order</h4>
+<div class='row'>
+<% order.carted_products.each do |carted_product| %>
+  <h4>Product<%= carted_product.produc_app.name %></h4>
+  <h4>Quantity<%= carted_product.quantity  %></h4>
+</div>
+
+<% end %>
+
 
  <a href="/products"> Back to all products</a>

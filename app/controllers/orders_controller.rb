@@ -17,14 +17,15 @@ class OrdersController < ApplicationController
     subtotal = 0
 
     @carted_product.each do |carted_product|
-      product_total = carted_product.quantity * carted_product.product.price
+      product_total = carted_product.quantity * carted_product.produc_app.price
       subtotal = subtotal + product_total
+      carted_product.update(status: "purchased")
     end
 
     tax = subtotal * 0.09
     total = tax + subtotal
 
-    order = Order.create(
+    @order = Order.create(
       user_id: current_user.id, 
       subtotal: subtotal,
       tax: tax,
@@ -32,7 +33,7 @@ class OrdersController < ApplicationController
     )
 
     flash[:success] = "Order successfully created"
-    redirect_to "/orders/#{order.id}" 
+    redirect_to "/orders/#{@order.id}" 
   end
 end  
 

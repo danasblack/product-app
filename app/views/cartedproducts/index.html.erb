@@ -1,6 +1,12 @@
+
 <div class='row'>
-<%= form_tag '/order'do %>
+<%= form_tag '/order' do %>
   <div>
-   <button class="btn btn-success" type="submit">Add To Cart</button>
+   <button class="btn btn-success" type="submit">Buy Now</button>
   </div> 
+<% end %>  
 </div>  
+<% @carted_products.each do |carted_product| %>
+<h2><%= carted_product.produc_app.name %></h2>
+<h2><%= carted_product.quantity %></h2>
+<% end %>
