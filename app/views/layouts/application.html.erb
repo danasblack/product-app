@@ -25,7 +25,7 @@
       <ul class="nav navbar-nav">
         <li class="active"><a href="#">Sell <span class="sr-only">(current)</span></a></li>
         <% if current_user %>
-        <li><a href="/orders/"> Checkout </a></li>
+              <li><a href="/cartedproducts"><span class="glyphicon glyphicon-shopping-cart"></span> Shopping Cart (<%= @cart_count %>)</a></li>
         <% else %>
            <a href="/products"></a>
         <% end %>

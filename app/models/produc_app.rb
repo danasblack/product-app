@@ -10,6 +10,14 @@ class ProducApp < ActiveRecord::Base
   has_many :categories, through: :categorized_products
   has_many :categorized_products
 
+  validates :name, presence: true
+  validates :price, presence: true
+  validates :price, numericality: true
+  validates :name, uniqueness: true
+  validates :price, presence: true, if: :integer
+  validates :price, presence: true, if: :greater_than
+  validates :supplier_id, presence: true
+
   def sale_message
     if price < 299
       return "Discount Item!"

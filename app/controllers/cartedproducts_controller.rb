@@ -11,7 +11,7 @@ class CartedproductsController < ApplicationController
         product_id: params[:product_id],
         user_id: current_user.id, 
         status: "carted"
-        )
+      )
       flash[:success] = "Item added to cart"
       redirect_to '/cartedproducts' 
     else

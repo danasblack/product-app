@@ -1,4 +1,6 @@
 class ProductsController < ApplicationController
+  before_action :authenticate_admin!, except: [:index, :show, :search]
+  
   def index
     @products = ProducApp.all
     sort_attribute = params[:sort]
@@ -18,8 +20,12 @@ class ProductsController < ApplicationController
   end  
   
   def new
-    render 'new.html.erb'
-  end  
+    if current_user && current_user.admin
+      render 'new.html.erb'
+    else
+      redirect_to "/"
+    end  
+  end 
 
   def create
     ProducApp.create(
@@ -44,7 +50,7 @@ class ProductsController < ApplicationController
     @product = ProducApp.find_by(id: product_id)
     render 'edit.html.erb'
   end  
-  
+
   def update
     product_id = params[:id]
     product = ProducApp(
@@ -56,7 +62,7 @@ class ProductsController < ApplicationController
     flash[:success] = "Product successfully updated!"
     redirect_to '/products#{@product.id}'
   end 
-  
+
   def destroy
     product_id = params[:id]
     @product = ProducApp.find_by(id: product_id)
@@ -70,5 +76,10 @@ class ProductsController < ApplicationController
     @products = ProducApp.where('name LIKE ?', '%#{search_term}%')
     render "index.html.erb"
   end   
-end 
 
+  def authenticate_admin!
+    unless current_user && current_user.admin
+      redirect_to "/"
+    end  
+  end 
+end
