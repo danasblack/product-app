@@ -4,6 +4,6 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
   has_many :carted_products
-  has_many :orders, through: :carted_products
+  has_many :orders
   has_many :produc_apps, through: :carted_products
 end

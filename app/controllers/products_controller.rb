@@ -20,47 +20,52 @@ class ProductsController < ApplicationController
   end  
   
   def new
-    if current_user && current_user.admin
-      render 'new.html.erb'
-    else
-      redirect_to "/"
-    end  
+    @product = ProducApp.new
+    render "new.html.erb"     
   end 
-
-  def create
-    ProducApp.create(
-      name: params[:name],
-      price: params[:price],
-      description: params[:description],
-      image: params[:image]
-    )
-    redirect_to '/products/#{product.id}'
-  end
 
   def show
     products = ProducApp.all
     @product = products.sample
     product_id = params[:id]
     @product = ProducApp.find_by(id: product_id)
-    render 'show.html.erb'
+    render "show.html.erb"
   end
+
+  def create
+    @product = ProducApp.new(
+      name: params[:name],
+      price: params[:price],
+      description: params[:description],
+      image: params[:image]
+    )
+    if @product.save
+      flash[:success] = "Product made!"
+      redirect_to '/products/#{product.id}'
+    else
+      render "new.html.erb"
+    end
+  end 
 
   def edit
     product_id = params[:id]
     @product = ProducApp.find_by(id: product_id)
-    render 'edit.html.erb'
+    render "edit.html.erb"
   end  
 
   def update
     product_id = params[:id]
-    product = ProducApp(
+    if @prodducts.update(
      name: params[:name],
      price: params[:price],
      description: params[:description],
      image: params[:image]
     )
-    flash[:success] = "Product successfully updated!"
-    redirect_to '/products#{@product.id}'
+      flash[:success] = "Product successfully updated!"
+      redirect_to '/products#{@product.id}'
+    else
+      render "edit.html.erb"
+    end
   end 
 
   def destroy
@@ -68,11 +73,11 @@ class ProductsController < ApplicationController
     @product = ProducApp.find_by(id: product_id)
     @product.destroy 
     flash[:warning] = "Product successfully deleted!"
-    redirect_to '/products'
+    redirect_to "/products"
   end
 
   def run_search
-    searcch_term = params[:search]
+    search_term = params[:search]
     @products = ProducApp.where('name LIKE ?', '%#{search_term}%')
     render "index.html.erb"
   end   

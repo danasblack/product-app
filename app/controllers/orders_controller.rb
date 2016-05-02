@@ -2,13 +2,11 @@ class OrdersController < ApplicationController
   def create
     @carted_product = current_user.carted_product.where(status: "carted")
     subtotal = 0
-    @carted_product.each do |carted_product|
-      product_total = carted_product.quantity * carted_product.produc_app.price
-      subtotal = subtotal + product_total
-  end
-    quantity = params[:quantity]
-    product = ProducApp.find_by(id: params[:product_id])
-    subtotal = quantity.to_i * product.price
+    @carted_products.each do |carted_product|
+      quantity = carted_product.quantity
+      price = carted_product.produc_app.price
+      subtotal += quantity * price
+    end
     tax = subtotal * 0.09
     total = subtotal + tax
    
