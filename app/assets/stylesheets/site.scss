@@ -1,12 +1,21 @@
 body{
   font-family: Futura,"Trebuchet MS",Arial,sans-serif;
-  background-image: url("footer_lodyas.png"),
+  background-color: white;
 }
 img{
     width: 300px;
+    height: 250px;
     padding: 10px;
     border: solid;
     border-color: black;
+    position: center;
 }
 
+h4 {
+  color:black;
+}
 
+.well {
+  height: 500px;
+  width: 400px;
+}
