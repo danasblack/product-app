@@ -21,5 +21,8 @@
 			type: 'man'
 		},
 		];
+		$scope.priceValue = function(price) {
+			return parseFloat(str.replace('$', price));
+		};
 	});
 })();
