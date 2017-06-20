@@ -1,6 +1,6 @@
 (function(){
 	"use strict";
-	angular.module("app").controller('pageCtrl', function($scope) {
+	angular.module("app").controller('pageCtrl', ['$scope', function($scope) {
 		$scope.products = [
 		{
 			photo: 'assets/sports-shoes-1.jpg',
@@ -24,5 +24,5 @@
 		$scope.priceValue = function(price) {
 			return parseFloat(str.replace('$', price));
 		};
-	});
+	}]);
 })();
