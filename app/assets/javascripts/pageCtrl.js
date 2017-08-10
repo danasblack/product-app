@@ -21,7 +21,7 @@
 			type: 'man'
 		},
 		{
-			photo: 'assets/sports-shoes-2.jpg',
+			photo: 'assets/running-shoe-1.jpg',
 			name: 'Nike Air Max',
 			price: 30,
 			type: 'man'
@@ -45,7 +45,7 @@
 			type: 'man'
 		},
 		{
-			photo: 'assets/sports-shoes-2.jpg',
+			photo: 'assets/running-shoe-1.jpg',
 			name: 'Nike Air Max',
 			price: 30,
 			type: 'man'

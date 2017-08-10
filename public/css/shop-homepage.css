@@ -46,11 +46,16 @@
     margin-top: -60px;*/
 }
 
-button {
+#buy-button {
+  border-color: #64D5AD;
+  background-color: white;
+}
+
+.page-header button {
   position: absolute;  
    top: 400px; 
    left: 680px; 
-   background-color: black; 
+   background-color: whitesmoke; 
 }
 
 .container-display {
@@ -61,7 +66,7 @@ button {
 }
 
 .container-products {
-    padding: 10px;
+    padding: 15px;
 }
 
 h1 { 
